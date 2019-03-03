@@ -15,6 +15,13 @@ class _GHFlutterAppState extends State<GHFlutterApp> {
   var _repos = [];
   var _isLoading = true;
 
+  @override
+  void initState() {
+    super.initState();
+
+    _fetchRepos();
+  }
+
   _fetchRepos() async {
     final url = 'https://api.github.com/users/chetannn/repos';
     final response = await http.get(url);
@@ -66,7 +73,12 @@ class _GHFlutterAppState extends State<GHFlutterApp> {
                                 child: Column(
                                   children: <Widget>[
                                     ListTile(
-                                      title: Text(_repos[i]['name'], style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
+                                      title: Text(
+                                        _repos[i]['name'],
+                                        style: TextStyle(
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                       leading: CircleAvatar(
                                         backgroundColor: Colors.green,
                                         backgroundImage: NetworkImage(
